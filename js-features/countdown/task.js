@@ -4,6 +4,7 @@ const countDown = function () {
     start.textContent -= 1;
   } else {
     clearInterval;
+    alert("Вы победили в конкурсе!");
   }
 };
 
