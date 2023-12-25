@@ -11,8 +11,9 @@ const productControlINC = Array.from(
 const AddProductButtonS = Array.from(
   document.querySelectorAll(".product__add")
 );
-
-////////! добавление в корзину
+const cart = document.querySelector(".cart");
+check();
+//! добавление в корзину
 for (let m = 0; m < AddProductButtonS.length; m++) {
   //    проверка наличия элемента в корзине
   AddProductButtonS[m].addEventListener("click", () => {
@@ -71,6 +72,21 @@ for (let m = 0; m < AddProductButtonS.length; m++) {
         }
       });
     }
+    //! удаление товара по клику
+    let cartProductsRemove = Array.from(
+      document.querySelectorAll(".cart__product")
+    );
+    for (
+      let removeItem = 0;
+      removeItem < cartProductsRemove.length;
+      removeItem++
+    ) {
+      cartProductsRemove[removeItem].addEventListener("click", () => {
+        cartProductsRemove[removeItem].remove();
+        check();
+      });
+    }
+    check();
   });
 }
 //! изменение количества продуктов
@@ -83,4 +99,13 @@ for (let i = 0; i < productControlDEC.length; i++) {
   productControlINC[i].addEventListener("click", () => {
     Number(productValue[i].textContent++);
   });
+}
+//! проверка корзина
+
+function check() {
+  if (cart.children[1].children.length > 0) {
+    cart.style.visibility = "visible";
+  } else {
+    cart.style.visibility = "hidden";
+  }
 }
