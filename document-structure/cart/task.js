@@ -24,6 +24,8 @@ for (let m = 0; m < AddProductButtonS.length; m++) {
           goo[q].getAttribute("data-id") ===
           AddProductButtonS[m].closest(".product").getAttribute("data-id")
         ) {
+          goo[q].children[1].textContent++;
+          // console.log(true);
           return;
         }
       }
@@ -50,7 +52,8 @@ for (let m = 0; m < AddProductButtonS.length; m++) {
     );
     count.textContent = hi;
     //! изменение количества продуктов в корзине
-    for (let p = 0; p < productValue.length; p++) {
+
+    /*  for (let p = 0; p < productValue.length; p++) {
       productControlDEC[p].addEventListener("click", () => {
         if (count.textContent > 1) {
           let dataIdProd = productControlINC[p]
@@ -71,7 +74,7 @@ for (let m = 0; m < AddProductButtonS.length; m++) {
           count.textContent++;
         }
       });
-    }
+    } */
     //! удаление товара по клику
     let cartProductsRemove = Array.from(
       document.querySelectorAll(".cart__product")
@@ -101,7 +104,6 @@ for (let i = 0; i < productControlDEC.length; i++) {
   });
 }
 //! проверка корзина
-
 function check() {
   if (cart.children[1].children.length > 0) {
     cart.style.visibility = "visible";
