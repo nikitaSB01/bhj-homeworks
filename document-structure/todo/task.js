@@ -13,10 +13,7 @@ taskButton.addEventListener("click", (elem) => {
     "afterBegin",
     `<div class='task'><div class='task__title'>${valueTaskInput}</div><a href='#' class='task__remove'>&times;</a></div>`
   );
-  let title = document.querySelectorAll(".task__title");
   taskInput.value = null;
-
-  let task = document.querySelector(".task");
   let taskRemove = document.querySelector(".task__remove");
   taskRemove.addEventListener("click", function () {
     this.parentElement.remove();
