@@ -14,10 +14,9 @@ for (const item of hasTooltips) {
     } else {
       divTooltip.classList.add("tooltip_active");
       divTooltip.textContent = titleTextItem;
-      item.append(divTooltip);
-      item.style.position = "relative";
-      divTooltip.style.position = "absolute";
-      divTooltip.style.left = "0";
+      item.after(divTooltip);
+      let left = item.getBoundingClientRect().left;
+      divTooltip.style.left = `${left}px`;
     }
   });
 }
