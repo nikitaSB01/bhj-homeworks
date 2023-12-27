@@ -2,29 +2,31 @@ const cartProducts = document.querySelector(".cart__products");
 let productValue = Array.from(
   document.querySelectorAll(".product__quantity-value")
 );
-const productControlDEC = Array.from(
+const productControlDec = Array.from(
   document.querySelectorAll(".product__quantity-control_dec")
 );
-const productControlINC = Array.from(
+const productControlInc = Array.from(
   document.querySelectorAll(".product__quantity-control_inc")
 );
-const AddProductButtonS = Array.from(
+const AddProductButtons = Array.from(
   document.querySelectorAll(".product__add")
 );
 const cart = document.querySelector(".cart");
 check();
 //! добавление в корзину
-for (let m = 0; m < AddProductButtonS.length; m++) {
+for (let i = 0; i < AddProductButtons.length; i++) {
   //    проверка наличия элемента в корзине
-  AddProductButtonS[m].addEventListener("click", () => {
-    let goo = Array.from(document.querySelectorAll(".cart__product"));
-    for (let q = 0; q < goo.length; q++) {
-      if (goo[q] !== null) {
+  AddProductButtons[i].addEventListener("click", () => {
+    let arrayCartProduct = Array.from(
+      document.querySelectorAll(".cart__product")
+    );
+    for (let j = 0; j < arrayCartProduct.length; j++) {
+      if (arrayCartProduct[j] !== null) {
         if (
-          goo[q].getAttribute("data-id") ===
-          AddProductButtonS[m].closest(".product").getAttribute("data-id")
+          arrayCartProduct[j].getAttribute("data-id") ===
+          AddProductButtons[i].closest(".product").getAttribute("data-id")
         ) {
-          goo[q].children[1].textContent++;
+          arrayCartProduct[j].children[1].textContent++;
           // console.log(true);
           return;
         }
@@ -37,44 +39,20 @@ for (let m = 0; m < AddProductButtonS.length; m++) {
     );
     // добавление атрибута(data-id) товара
     let cartProduct = document.querySelector(".cart__product");
-    let cartProductDataId = AddProductButtonS[m]
+    let cartProductDataId = AddProductButtons[i]
       .closest(".product")
       .getAttribute("data-id");
     cartProduct.setAttribute("data-id", cartProductDataId);
     // добавление фото товара
     let imgCart = document.querySelector(".cart__product-image");
-    imgCartSCR = AddProductButtonS[m].closest(".product").children[1];
-    imgCart.setAttribute("src", imgCartSCR.src);
+    imgCartScr = AddProductButtons[i].closest(".product").children[1];
+    imgCart.setAttribute("src", imgCartScr.src);
     // добавление количетсва продуктов данного товара
     let count = document.querySelector(".cart__product-count");
-    let hi = Number(
-      AddProductButtonS[m].previousElementSibling.children[1].textContent
+    let productValueNumber = Number(
+      AddProductButtons[i].previousElementSibling.children[1].textContent
     );
-    count.textContent = hi;
-    //! изменение количества продуктов в корзине
-
-    /*  for (let p = 0; p < productValue.length; p++) {
-      productControlDEC[p].addEventListener("click", () => {
-        if (count.textContent > 1) {
-          let dataIdProd = productControlINC[p]
-            .closest(".product")
-            .getAttribute("data-id");
-          let dataIdProdCart = cartProduct.getAttribute("data-id");
-          if (dataIdProd == dataIdProdCart) {
-            count.textContent--;
-          }
-        }
-      });
-      productControlINC[p].addEventListener("click", () => {
-        let dataIdProd = productControlINC[p]
-          .closest(".product")
-          .getAttribute("data-id");
-        let dataIdProdCart = cartProduct.getAttribute("data-id");
-        if (dataIdProd == dataIdProdCart) {
-          count.textContent++;
-        }
-      });
-    } */
+    count.textContent = productValueNumber;
     //! удаление товара по клику
     let cartProductsRemove = Array.from(
       document.querySelectorAll(".cart__product")
@@ -93,13 +71,13 @@ for (let m = 0; m < AddProductButtonS.length; m++) {
   });
 }
 //! изменение количества продуктов
-for (let i = 0; i < productControlDEC.length; i++) {
-  productControlDEC[i].addEventListener("click", () => {
+for (let i = 0; i < productControlDec.length; i++) {
+  productControlDec[i].addEventListener("click", () => {
     if (Number(productValue[i].textContent) > 1) {
       Number(productValue[i].textContent--);
     }
   });
-  productControlINC[i].addEventListener("click", () => {
+  productControlInc[i].addEventListener("click", () => {
     Number(productValue[i].textContent++);
   });
 }
