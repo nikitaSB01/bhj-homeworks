@@ -33,27 +33,24 @@ for (let i = 0; i < AddProductButtons.length; i++) {
         );
       return;
     } else {
-      //  добавление элемента(cart__product) в корзину
-      cartProducts.insertAdjacentHTML(
-        "afterBegin",
-        "<div class='cart__product'><img class='cart__product-image'></img><div class='cart__product-count'></div></div>"
-      );
       // добавление атрибута(data-id) товара
       let cartProduct = document.querySelector(".cart__product");
       let cartProductDataId = AddProductButtons[i]
         .closest(".product")
         .getAttribute("data-id");
-      cartProduct.setAttribute("data-id", cartProductDataId);
       // добавление фото товара
       let imgCart = document.querySelector(".cart__product-image");
       let imgCartScr = AddProductButtons[i].closest(".product").children[1];
-      imgCart.setAttribute("src", imgCartScr.src);
-      // добавление количетсва продуктов данного товара
+      //  добавление элементу значение количества
       let count = document.querySelector(".cart__product-count");
       let productValueNumber = Number(
         AddProductButtons[i].previousElementSibling.children[1].textContent
       );
-      count.textContent = productValueNumber;
+      //  добавление элемента(cart__product) в корзину
+      cartProducts.insertAdjacentHTML(
+        "afterBegin",
+        `<div class='cart__product' data-id='${cartProductDataId}'><img src= '${imgCartScr.src}' class='cart__product-image'></img><div class='cart__product-count'>${productValueNumber}</div></div>`
+      );
     }
     //! удаление товара по клику
     let cartProductsRemove = Array.from(
