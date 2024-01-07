@@ -10,10 +10,8 @@ const userId = document.getElementById("user_id");
 if (localStorage["authString"]) {
   formsChangeAuth(JSON.parse(localStorage["authString"])["user_id"]);
 }
-
 function clearFormData() {
-  login.value = "";
-  password.value = "";
+  form.reset();
 }
 function formsChangeAuth(userID) {
   document.getElementById("signin").classList.remove("signin_active");
@@ -27,19 +25,18 @@ function save(event) {
   if (login.value && password.value) {
     let formData = new FormData(form);
     const xhrPost = new XMLHttpRequest();
+    xhrPost.responseType = "json";
     xhrPost.open(
       "POST",
       "https://students.netoservices.ru/nestjs-backend/auth"
     );
     xhrPost.onload = function () {
-      if (xhrPost.readyState === 4) {
-        let response = JSON.parse(xhrPost.response);
-        if (response["success"] === false) {
-          alert("Неверный логин или пароль!");
-        } else {
-          formsChangeAuth(response["user_id"]);
-          localStorage.setItem("authString", JSON.stringify(response));
-        }
+      let response = xhrPost.response;
+      if (response["success"] === false) {
+        alert("Неверный логин или пароль!");
+      } else {
+        formsChangeAuth(response["user_id"]);
+        localStorage.setItem("authString", JSON.stringify(response));
       }
     };
     xhrPost.send(formData);
