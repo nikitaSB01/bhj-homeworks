@@ -1,10 +1,7 @@
 const modalClose = document.querySelector(".modal__close");
 const modal = document.querySelector(".modal");
 
-if (getCookie("modalUnopened")) {
-  console.log(true);
-} else {
-  console.log(false);
+if (!getCookie("modalUnopened")) {
   modal.classList.add("modal_active");
 }
 
