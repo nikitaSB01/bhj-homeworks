@@ -6,7 +6,7 @@ const password = control[1];
 const form = document.getElementById("signin__form");
 const welcome = document.getElementById("welcome");
 const userId = document.getElementById("user_id");
-//  localStorage.removeItem("authString");
+
 if (localStorage["authString"]) {
   formsChangeAuth(JSON.parse(localStorage["authString"])["user_id"]);
 }

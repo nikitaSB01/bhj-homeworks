@@ -1,6 +1,6 @@
 const modalClose = document.querySelector(".modal__close");
 const modal = document.querySelector(".modal");
-//  document.cookie = "modalUnopened=; Expires=Thu, 01 Jan 1970 00:00:00 GMT";
+
 if (getCookie("modalUnopened")) {
   console.log(true);
 } else {
