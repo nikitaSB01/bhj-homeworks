@@ -1,13 +1,9 @@
 const editor = document.getElementById("editor");
 const button = document.getElementById("button");
 // проверка н наличие значения в textarea
-if (localStorage.editorValue === undefined) {
-  editor.innerHTML = "";
-} else {
-  editor.value = localStorage.editorValue;
-}
+editor.value = localStorage.getItem("editorValue");
 // добавлене значения textarea в localStorage
-editor.addEventListener("focusout", () => {
+editor.addEventListener("input", () => {
   localStorage.setItem("editorValue", editor.value);
 });
 // удаление localStorage и значения textarea
